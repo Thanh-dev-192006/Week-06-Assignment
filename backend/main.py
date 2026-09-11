@@ -24,7 +24,7 @@ def read_root():
     return {"message": "House price prediction API is running"}
 
 
-# This endpoint is synchronous because the prediction is a local calculation with no awaited I/O.
+
 @app.get("/predict")
 def predict(area: float, bedrooms: int, location: str = "other"):
     price = predict_price(area, bedrooms, location)
@@ -53,6 +53,6 @@ def predict_from_json(house: HouseInput):
     }
 
 
-# Resolve this from the file location so the mount works regardless of the current working directory.
+
 frontend_directory = Path(__file__).resolve().parent.parent / "frontend"
 app.mount("/static", StaticFiles(directory=frontend_directory), name="static")
