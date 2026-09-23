@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Items and house price prediction</title>
+  <link rel="stylesheet" href="house_form.css">
+</head>
+<body>
+  <main class="page">
+    <section class="panel">
+      <h1>Items</h1>
+      <p class="subtitle">Create, edit, filter and page through items</p>
+
+      <form id="itemForm">
+        <input id="itemId" type="hidden">
+
+        <div class="field">
+          <label for="itemName">Name</label>
+          <input id="itemName" type="text" required>
+        </div>
+
+        <div class="field">
+          <label for="itemPrice">Price</label>
+          <input id="itemPrice" type="number" min="0" step="any" required>
+        </div>
+
+        <label class="checkbox">
+          <input id="itemInStock" type="checkbox" checked>
+          <span>In stock</span>
+        </label>
+
+        <div class="button-row">
+          <button id="itemSubmit" type="submit">Create item</button>
+          <button id="itemCancel" type="button" class="secondary" hidden>Cancel edit</button>
+        </div>
+      </form>
+
+      <p id="notice" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Browse items</h2>
+
+      <form id="filterForm" class="filters">
+        <div class="field">
+          <label for="filterMin">Minimum price</label>
+          <input id="filterMin" name="min_price" type="number" min="0" step="any">
+        </div>
+        <div class="field">
+          <label for="filterMax">Maximum price</label>
+          <input id="filterMax" name="max_price" type="number" min="0" step="any">
+        </div>
+        <div class="field">
+          <label for="filterQuery">Name contains</label>
+          <input id="filterQuery" name="q" type="search" minlength="2" placeholder="At least 2 characters">
+        </div>
+        <div class="field">
+          <label for="filterSort">Sort by</label>
+          <select id="filterSort" name="sort_by">
+            <option value="id">ID</option>
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filterOrder">Order</label>
+          <select id="filterOrder" name="order">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filterLimit">Items per page</label>
+          <input id="filterLimit" name="limit" type="number" min="1" value="10" required>
+        </div>
+
+        <div class="button-row wide">
+          <button type="submit">Apply filters</button>
+          <button id="filterClear" type="button" class="secondary">Clear filters</button>
+        </div>
+      </form>
+
+      <p id="pageSummary" class="summary"></p>
+      <ul id="itemList" class="item-list"></ul>
+
+      <div class="button-row">
+        <button id="pagePrev" type="button" class="secondary" disabled>Previous page</button>
+        <button id="pageNext" type="button" class="secondary" disabled>Next page</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>House price prediction</h2>
+
+      <form id="predictForm">
+        <div class="field">
+          <label for="areaSqm">Area (m²)</label>
+          <input id="areaSqm" type="number" min="0.01" step="any" required>
+        </div>
+        <div class="field">
+          <label for="bedroomCount">Bedrooms</label>
+          <input id="bedroomCount" type="number" min="0" step="1" required>
+        </div>
+        <div class="field">
+          <label for="distanceKm">Distance to center (km)</label>
+          <input id="distanceKm" type="number" step="any" required>
+        </div>
+        <button id="predictSubmit" type="submit">Predict price</button>
+      </form>
+
+      <p id="predictResult" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="house_form.js"></script>
+</body>
+</html>
